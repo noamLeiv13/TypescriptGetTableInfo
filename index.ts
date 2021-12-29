@@ -1,0 +1,1 @@
+export {getTableInfo} from "./GetTableInfo";

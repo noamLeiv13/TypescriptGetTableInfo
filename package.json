@@ -1,0 +1,20 @@
+{
+  "name": "advancedTypescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "Noam Levi",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "ts-deep-pick": "^0.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.4",
+    "@types/lodash": "^4.14.178"
+  },
+  "description": ""
+}
