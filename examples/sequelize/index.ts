@@ -9,7 +9,7 @@ class Person extends Model {
     name: string
 }
 
-
+// run in root directory docker-compose up --build for creating postgres db instance
 (async () => {
     const sequelize = new Sequelize({
         username: "sierra",
