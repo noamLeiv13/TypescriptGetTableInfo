@@ -2,9 +2,9 @@ import {Column, DataType, Model, Sequelize, Table} from "sequelize-typescript";
 import {getTableInfo} from "../../src/GetTableInfo";
 import {SequelizeCallback} from "../../src/callbacks/SequelizeCallback";
 
-
+type PersonInfo =  { name: string};
 @Table({tableName: "Person"})
-class Person extends Model {
+class Person extends Model<PersonInfo> {
     @Column(DataType.STRING)
     name: string
 }
@@ -19,8 +19,8 @@ class Person extends Model {
         dialect: "postgres"
     });
     sequelize.addModels([Person])
-    type PersonPropPath =  { name: string};
-    const person: PersonPropPath = {} as PersonPropPath;
+
+    const person: PersonInfo = {} as PersonInfo; //we need this object for internal usage of getTableInfo
     const test1 = await getTableInfo(sequelize, "Person", {}, person, SequelizeCallback, "name");
     console.log(test1.name);
 })();
