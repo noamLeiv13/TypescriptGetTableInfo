@@ -1,4 +1,5 @@
 import {DeepPick, DeepPickPath, DefaultGrammar} from "ts-deep-pick";
+import {Sequelize} from "sequelize-typescript";
 
 type PathOf2<T extends object, P extends any[] = []> = {
     [K in keyof T]:
@@ -48,8 +49,10 @@ type ExtractKeyPathsFromArray2<O extends Record<string, any>, T extends string[]
 export type SerializedPathOf2<T extends object> = Join2<Extract<PathOf2<T>, string[]>, '.'>;
 
 
-// @ts-ignore
-export async function getTableInfo<O extends {}, T extends SerializedPathOf2<O>>(o: O, callback:<K>(...paths: DeepPickPath<K, DefaultGrammar>[])=>Promise<DeepPick<K, typeof paths[number]>>, ...paths: T[]): DeepPick<O,  typeof paths[number]>{
+export type ConnectionType = Sequelize;
+
+//@ts-ignore
+export async function getTableInfo<O extends {}, T extends SerializedPathOf2<O>>(connection: ConnectionType, tableName: string,queryOptions: {}, o: O, callback:<K>(connection:ConnectionType, tableName: string,queryOptions: {} = {},...paths: DeepPickPath<K, DefaultGrammar>[])=>Promise<DeepPick<K, typeof paths[number]>>, ...paths: T[]): DeepPick<O,  typeof paths[number]>{
     //@ts-ignore
     return await callback(...paths);
 }
