@@ -52,7 +52,7 @@ export type SerializedPathOf2<T extends object> = Join2<Extract<PathOf2<T>, stri
 export type ConnectionType = Sequelize;
 
 //@ts-ignore
-export async function getTableInfo<O extends {}, T extends SerializedPathOf2<O>>(connection: ConnectionType, tableName: string,queryOptions: {}, o: O, callback:<K>(connection:ConnectionType, tableName: string,queryOptions: {} = {},...paths: DeepPickPath<K, DefaultGrammar>[])=>Promise<DeepPick<K, typeof paths[number]>>, ...paths: T[]): DeepPick<O,  typeof paths[number]>{
+export async function getTableInfo<O extends {}, T extends SerializedPathOf2<O>>(connection: ConnectionType, tableName: string,queryOptions: {}, o: O, callback:<K>(connection:ConnectionType, tableName: string,queryOptions: {},...paths: DeepPickPath<K, DefaultGrammar>[])=>Promise<DeepPick<K, typeof paths[number]>>, ...paths: T[]): DeepPick<O,  typeof paths[number]>{
     //@ts-ignore
-    return await callback(...paths);
+    return await callback(connection, tableName, queryOptions,...paths);
 }
